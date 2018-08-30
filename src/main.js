@@ -10,6 +10,8 @@ import './style.css'
 import VueTimeago from 'vue-timeago'
 import Notifications from 'vue-notification'
 
+import appsyncProvider from './appsync/client'
+
 Vue.use(VueTimeago);
 Vue.use(Notifications);
 
@@ -17,5 +19,6 @@ Vue.config.productionTip = false
 
 new Vue({
   Notifications,
+  provide: appsyncProvider.provide(),
   render: h => h(App)
 }).$mount('#app')

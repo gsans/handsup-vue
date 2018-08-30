@@ -1,0 +1,47 @@
+schema {
+  query:Query
+}
+
+type Query {
+  getQuestions: [Question]
+}
+
+type User {
+  id: ID!
+  auth0UserId: String
+  flagged: Boolean
+  name: String
+  pictureUrl: String
+  questions: [Question!]
+  role: UserRole
+  username: String
+  createdAt: AWSDateTime
+}
+
+type Question {
+  id: ID!
+  body: String!
+  flagged: Boolean
+  user: User 
+  votes: [Vote!]
+  createdAt: AWSDateTime
+}
+
+type Vote {
+  id: ID!
+  question: Question
+  createdAt: AWSDateTime
+}
+
+enum UserRole {
+  admin
+  organiser
+  moderator
+  user
+}
+
+
+# Notes:
+- Add resolver to automatically fill createdAt field: User, Vote, Question
+- Remove most mandatory fields for lists and fields
+- Missing role in CreateUser/UpdateUser?

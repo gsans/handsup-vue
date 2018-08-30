@@ -1,0 +1,67 @@
+query list {
+  listQuestions {
+    items{
+      id
+      votes {
+        createdAt
+      }
+      totalVotes
+      body
+      user {
+        id
+      }
+    }
+  }
+  
+  listVotes {
+    items {
+      id question {
+        id
+      }
+    }
+  }
+}
+
+
+
+mutation addQuestion {
+  createQuestion(input: {
+    body:"test"
+  }) {
+    id body createdAt
+  }
+}
+
+mutation addUser {
+  createUser(input: {
+    auth0UserId: "auth0"
+    name:"gerardsans"
+    pictureUrl: "https://pbs.twimg.com/profile_images/953430046915559424/3qUVl6M-_400x400.jpg"
+    username: "gerardsans"
+    role: admin
+  }) {
+  id
+  auth0UserId
+  flagged
+  name
+  pictureUrl
+  questions {
+    id body
+  }
+  role
+  username
+  createdAt
+  }
+}
+
+mutation addVote {
+  createVote(input: { 
+  	question: "0c8a0786-f006-4e2a-aa20-f9cfdb9a00d1"
+  }) {
+    id 
+    question {
+      id
+    }
+    createdAt
+  }
+}
