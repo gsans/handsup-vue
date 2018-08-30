@@ -29,7 +29,8 @@ export default {
       if (!this.text || this.text.length === 0) {
         return;
       }
-      this.$refs.input.value='';  
+      this.$emit("add", { body: this.$refs.input.value });
+      this.$refs.input.value=''; 
       /* 
         .addQuestion(this.input.value, this.props.auth.userId)
         .then(() => {

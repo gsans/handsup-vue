@@ -4,10 +4,11 @@
       <Question v-for="(question, index) in questions"
         :key="index"
         :question="question"
+        @vote="vote"
       />
     </ul>
-    <div v-if="questions.length===0" class='centered text-body'>There are no questions.</div>
-    <Loading v-if="loading"/>
+    <div v-if="questions && questions.length===0" class='centered text-body'>There are no questions.</div>
+    <Loading v-if="!questions || (questions && questions.length===0)"/>
     <section id='bottom' />
   </div>
 </template>
@@ -22,8 +23,11 @@ export default {
     Question, Loading
   },
   props: ['questions'],
-  data: () => ({
-    loading: false
-  }),
+  methods: {
+    vote(question) {
+      debugger;
+      this.$emit("vote", question);
+    }
+  }
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" class="app" v-if="hydrated"> 
     <TopNavigation/>
-    <QuestionList :questions="questions"/>
-    <AddQuestion/>
+    <QuestionList :questions="questions?questions.items:[]" @vote="vote"/>
+    <AddQuestion @add="add"/>
     <div class='flying-hearts' />
     <notifications class="alert" group="alerts" position="top right"/>
   </div>
@@ -13,21 +13,97 @@ import TopNavigation from './components/TopNavigation.vue'
 import AddQuestion from './components/AddQuestion.vue'
 import QuestionList from './components/QuestionList.vue'
 
+import { 
+  ListQuestions as QUESTIONS, 
+  AddQuestion as ADD_QUESTION,
+  AddVote as VOTE
+} from './appsync/graphql'
+
+/*
+{
+  body: "Any update about React Native for macOS (native desktop apps)?",
+  user: { 
+    name: "test",
+    username: "@michamazaheri"
+  },
+  createdAt: Date.now(),
+  flagged: false   
+}
+*/
+
 export default {
   name: 'app',
   data: () => ({
-    questions: [{
-      body: "Any update about React Native for macOS (native desktop apps)?",
-      user: { 
-        name: "test",
-        username: "@michamazaheri"
-      },
-      createdAt: Date.now(),
-      flagged: false   
-    }]    
+    hydrated: true,
+    questions: []    
   }),
   components: {
     TopNavigation, AddQuestion, QuestionList
+  },
+  /* async mounted() {
+    await this.$apollo.provider.defaultClient.hydrated();
+    this.hydrated = true;
+  }, */
+  apollo: {
+    questions: {
+      query: () => QUESTIONS,
+    }
+  },
+  methods: {
+    add(question) {
+      this.$apollo.mutate({
+        mutation: ADD_QUESTION,
+        variables: question,
+        update: (store, { data: { createQuestion } }) => {
+          if ('id' in createQuestion) {
+            if ('totalVotes' in createQuestion) {
+              if (!createQuestion.totalVotes) {
+                createQuestion.totalVotes = 0;
+              } else {
+                createQuestion.totalVotes = createQuestion.votes.items.length || 0;
+              }
+            }
+          }
+          const data = store.readQuery({ query: QUESTIONS })
+          data.questions.items.push(createQuestion)
+          store.writeQuery({ query: QUESTIONS, data })
+        },
+        /* optimisticResponse: {
+          __typename: 'Mutation',
+          createQuestion: {
+            __typename: 'Question',
+            ...question
+          }
+        }, */
+      })
+      .catch(error => {
+        this.$notify({
+          type: 'error',
+          group: 'alerts',
+          title: 'Error',
+          text: error,
+        });
+      })      
+    },
+    vote(question) {
+      debugger;
+      this.$apollo.mutate({
+        mutation: VOTE,
+        variables: question,
+        update: (store, { data: { createVote } }) => {
+          const data = store.readQuery({ query: QUESTIONS })
+          store.writeQuery({ query: QUESTIONS, data })
+        },
+      })
+      .catch(error => {
+        this.$notify({
+          type: 'error',
+          group: 'alerts',
+          title: 'Error',
+          text: error,
+        });
+      })            
+    }
   }
 }
 

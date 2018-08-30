@@ -5,10 +5,10 @@
         <div class='text-body'>
           <p style="text-overflow: ellipsis; overflow: hidden;">
             <TweetParser :message="question.body"/></p></div>
-        <Votes :votes="votes" />
+        <Votes :votes="question.votes" />
         <div class='profile-container'>
           <div class='profile-small'>
-            <img :src="DEFAULT_PROFILE_PIC" />
+            <img :src="question.pictureUrl? question.pictureUrl :'http://i1.kym-cdn.com/photos/images/original/000/869/487/ccf.png'"/>
           </div>
           <div class='profile-small-text'>
             by 
@@ -44,12 +44,12 @@ export default {
   },
   props: ['question'],
   data: () => ({
-    DEFAULT_PROFILE_PIC: "http://i1.kym-cdn.com/photos/images/original/000/869/487/ccf.png",
-    votes: 120
+    
   }),
   methods: {
     onSubmit() {
       this.flyingHearts('.flying-hearts');
+      this.$emit("vote", { question: this.question.id });
     },
     flyingHearts(selector) {
       let rnd = (min, max) => Math.floor(Math.random()*(max - min + 1) + min);
