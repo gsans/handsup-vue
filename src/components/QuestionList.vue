@@ -1,7 +1,7 @@
 <template>
   <div class='list'>
     <ul>
-      <Question v-for="(question, index) in sorted_questions"
+      <Question v-for="(question, index) in sorted"
         :key="index"
         :question="question"
         @vote="vote"
@@ -29,8 +29,14 @@ export default {
     }
   },
   computed: {
-    sorted_questions() {
-      return this.questions.sort((a, b) => { return b.votes - a.votes;});
+    sorted() {
+      debugger;
+      
+      if (!this.questions) {
+        return this.questions;
+      }
+      const sorted = this.questions.slice();
+      return sorted.sort((a, b) => a.votes.length < b.votes.length)
     }
   }
 };
