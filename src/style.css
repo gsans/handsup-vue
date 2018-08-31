@@ -330,7 +330,7 @@ li {
   position: fixed;
   bottom: 0px;
   left: 25%;
-  z-index: 1;
+  z-index: 5;
 }
 .bottom_wrapper .message_input_wrapper {
   display: inline-block;
@@ -365,6 +365,7 @@ li {
   text-align: center;
   position: absolute;
   right: -75px;
+  z-index: 5;
 }
 button.send_message:disabled,
 button.send_message[disabled] {
@@ -439,6 +440,7 @@ div.flying-hearts {
   left: 50%;
   margin-left: -50px;
   pointer-events: none;
+  z-index: 1;
 }
 div.heart {
   width: 30px;

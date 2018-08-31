@@ -9,9 +9,10 @@ import './style.css'
 
 import VueTimeago from 'vue-timeago'
 import Notifications from 'vue-notification'
-
+var VueScrollTo = require('vue-scrollto');
 import appsyncProvider from './appsync/client'
 
+Vue.use(VueScrollTo);
 Vue.use(VueTimeago);
 Vue.use(Notifications);
 

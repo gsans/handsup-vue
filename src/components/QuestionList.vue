@@ -8,7 +8,7 @@
       />
     </ul>
     <div v-if="questions && questions.length===0" class='centered text-body'>There are no questions.</div>
-    <Loading v-if="!questions || (questions && questions.length===0)"/>
+    <Loading v-if="$apollo.loading"/>
     <section id='bottom' />
   </div>
 </template>
@@ -25,7 +25,6 @@ export default {
   props: ['questions'],
   methods: {
     vote(question) {
-      debugger;
       this.$emit("vote", question);
     }
   }

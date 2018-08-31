@@ -20,6 +20,9 @@ const client = new AWSAppSyncClient({
   }
 })
 
+//client.initQueryManager();
+//client.resetStore();
+
 export default new VueApollo({
   defaultClient: client
 })

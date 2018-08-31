@@ -5,7 +5,7 @@
         <div class='text-body'>
           <p style="text-overflow: ellipsis; overflow: hidden;">
             <TweetParser :message="question.body"/></p></div>
-        <Votes :votes="question.votes" />
+        <Votes :votes="question.votes.length" />
         <div class='profile-container'>
           <div class='profile-small'>
             <img :src="question.pictureUrl? question.pictureUrl :'http://i1.kym-cdn.com/photos/images/original/000/869/487/ccf.png'"/>

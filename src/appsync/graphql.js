@@ -16,7 +16,6 @@ query listQuestions {
         id
       }
       createdAt
-      totalVotes
     }
   }
 }`
@@ -37,7 +36,6 @@ export const AddQuestion = gql`
         id
       }
       createdAt
-      totalVotes
     }
   }
 `
@@ -48,9 +46,7 @@ export const AddVote = gql`
       question: $question,
     }) {
       id
-      question {
-        id 
-      }
+      questionId
     }
   }
 `
