@@ -1,7 +1,7 @@
 <template>
   <div class='list'>
     <ul>
-      <Question v-for="(question, index) in questions"
+      <Question v-for="(question, index) in sorted_questions"
         :key="index"
         :question="question"
         @vote="vote"
@@ -26,6 +26,11 @@ export default {
   methods: {
     vote(question) {
       this.$emit("vote", question);
+    }
+  },
+  computed: {
+    sorted_questions() {
+      return this.questions.sort((a, b) => { return b.votes - a.votes;});
     }
   }
 };
