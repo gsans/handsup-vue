@@ -29,7 +29,7 @@ type Question {
 
 type Vote {
   id: ID!
-  question: Question
+  questionId: ID!
   createdAt: AWSDateTime
 }
 
@@ -45,3 +45,4 @@ enum UserRole {
 - Add resolver to automatically fill createdAt field: User, Vote, Question
 - Remove most mandatory fields for lists and fields
 - Missing role in CreateUser/UpdateUser?
+- create Index
