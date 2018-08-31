@@ -30,8 +30,6 @@ export default {
   },
   computed: {
     sorted() {
-      debugger;
-      
       if (!this.questions) {
         return this.questions;
       }
