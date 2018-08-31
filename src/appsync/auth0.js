@@ -1,0 +1,10 @@
+curl --request POST \
+  --url https://graphql-node.auth0.com/oauth/token \
+  --header 'content-type: application/json' \
+  --data '{"client_id":"IGBTybQy7ZvycFBG0wgPy57XfstmDSoM","client_secret":"fpAm7L5YRAcvL5e-ky6SDvxHMhIl7RB4OkhxjpDWmPRB5B-BAwLrJe9d4zdaKcU5","audience":"app-sync-auth0","grant_type":"client_credentials"}'
+
+
+  https://graphql-node.auth0.com/oidc
+
+
+  eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJURkdNekl5UlRsR1EwUkROalJCTlRWQlJUSkZRakk0TVRrMk1qYzNOVGczUlRKRk9Ua3lOUSJ9.eyJpc3MiOiJodHRwczovL2dyYXBocWwtbm9kZS5hdXRoMC5jb20vIiwic3ViIjoiSUdCVHliUXk3WnZ5Y0ZCRzB3Z1B5NTdYZnN0bURTb01AY2xpZW50cyIsImF1ZCI6ImFwcC1zeW5jLWF1dGgwIiwiaWF0IjoxNTM1NzEzOTM3LCJleHAiOjE1MzU4MDAzMzcsImF6cCI6IklHQlR5YlF5N1p2eWNGQkcwd2dQeTU3WGZzdG1EU29NIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.KPfsniQWUsmztWtqtYod0JHV26pXTDuDcFnNdmdz2l7i-FMvQgXdF984YtMdPIj57E2YBYqNvorD_cLUvHXvEfzRF0vW6bo064i3ICvihn5DVuafruYrJEl03P479kZfvJwrcMiOHqjR_dnK-7bs1w81oP8vetkPkrtoS29sKcbEziQ-Vq6TKRPhcDtw6Wocv9ZCBkI_NG7lMrQsG99XrsM62WI5ts4G-TT7YdxMkxZSNrSpWvZXy1aruV00VuG3rQPADak_YqWKaa8TC0QrSC9IgIoobWmEPhOMk3DN6C-_P1LpR39n4G5hv4b86u1C3dq3ChxQesDmBWcgxh7nBA

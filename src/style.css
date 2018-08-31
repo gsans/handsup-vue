@@ -20,7 +20,7 @@ body {
   scroll-behavior: smooth;
 }
 #app,
-html {
+html, .app-wrapper {
   height: 100%;
 }
 

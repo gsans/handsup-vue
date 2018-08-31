@@ -1,6 +1,5 @@
 <template>
-  <div id="app" class="app" v-if="hydrated"> 
-    <TopNavigation/>
+  <div id="app" class="app" v-if="hydrated">
     <QuestionList :questions="questions?questions.items:[]" @vote="vote" />
     <AddQuestion/>
     <div class='flying-hearts' />
@@ -9,7 +8,7 @@
 </template>
 
 <script>
-import TopNavigation from './components/TopNavigation.vue'
+
 import AddQuestion from './components/AddQuestion.vue'
 import QuestionList from './components/QuestionList.vue'
 
@@ -25,7 +24,7 @@ export default {
     questions: []    
   }),
   components: {
-    TopNavigation, AddQuestion, QuestionList
+    AddQuestion, QuestionList
   },
   /* async mounted() {
     await this.$apollo.provider.defaultClient.hydrated();

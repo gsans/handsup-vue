@@ -1,5 +1,8 @@
 import Vue from 'vue'
-import App from './App.vue'
+import AppWrapper from './AppWrapper.vue'
+
+import router from './router'
+
 import $ from "jquery";
 window.jQuery = window.$ = $;
 require('bootstrap');
@@ -19,7 +22,8 @@ Vue.use(Notifications);
 Vue.config.productionTip = false
 
 new Vue({
+  router,
   Notifications,
   provide: appsyncProvider.provide(),
-  render: h => h(App)
+  render: h => h(AppWrapper)
 }).$mount('#app')

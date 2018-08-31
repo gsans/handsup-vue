@@ -3,7 +3,7 @@
   <div class='container'>
     <div class='row'>
       <div class='col-md-4 col-xs-3'>
-        <!-- <Profile/> -->
+        <Profile :profile="profile" :isLogged="isLogged"/>
       </div>
       <div class='col-md-4 col-xs-6'>
         <div class='centerBlock app-title'>
@@ -21,7 +21,17 @@
 </template>
 
 <script>
+import Profile from './Profile'
+
 export default {
-  
+  data: () => ({
+    profile: { 
+      picture: 'https://pbs.twimg.com/profile_images/953430046915559424/3qUVl6M-_400x400.jpg' 
+    },
+    isLogged: true
+  }),
+  components: {
+    Profile
+  },
 }
 </script>

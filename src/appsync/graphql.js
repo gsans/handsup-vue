@@ -2,6 +2,12 @@ import gql from 'graphql-tag'
 
 // how to use fragments?
 
+/*
+      user {
+        id username pictureUrl flagged 
+      }
+      */
+
 export const ListQuestions = gql`
 query listQuestions {
   questions: listQuestions {
@@ -9,9 +15,6 @@ query listQuestions {
       id
       body
       flagged
-      user {
-        id username pictureUrl flagged 
-      }
       votes {
         id
       }
@@ -29,9 +32,6 @@ export const AddQuestion = gql`
       id
       body
       flagged
-      user {
-        id username pictureUrl flagged 
-      }
       votes {
         id
       }
