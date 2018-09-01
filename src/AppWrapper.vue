@@ -1,8 +1,12 @@
 <template>
   <div class="app-wrapper">
-    <TopNavigation/>
-    <router-view 
-      :auth="auth" :authenticated="authenticated" :login="login">
+    <TopNavigation
+      :auth="auth" 
+      :authenticated="authenticated" 
+      :login="login" 
+      :logout="logout"
+    />
+    <router-view :auth="auth">
     </router-view>  
   </div>
 </template>

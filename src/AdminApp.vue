@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="app" v-if="hydrated">
     <QuestionList :questions="questions?questions.items:[]" @vote="vote" />
+    <AddQuestion :authenticated="true" />
     <div class='flying-hearts' />
     <notifications class="alert" group="alerts" position="top right"/>
   </div>
@@ -8,6 +9,7 @@
 
 <script>
 import QuestionList from './components/QuestionList.vue'
+import AddQuestion from './components/AddQuestion.vue'
 
 import { 
   ListQuestions as QUESTIONS, 
@@ -20,9 +22,9 @@ export default {
     hydrated: true,
     questions: []    
   }),
-  props: ['auth'],
+  props: ['auth', 'authenticated'],
   components: {
-    QuestionList
+    QuestionList, AddQuestion
   },
   /* async mounted() {
     await this.$apollo.provider.defaultClient.hydrated();

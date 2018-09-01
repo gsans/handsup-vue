@@ -1,5 +1,5 @@
 <template>
-  <div class='profile mt8'>
+  <div class='profile mt8' v-if="isLogged">
     <img :src="profile.picture" />
   </div>  
 </template>

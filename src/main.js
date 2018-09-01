@@ -23,6 +23,7 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+//  store,
   Notifications,
   provide: appsyncProvider.provide(),
   render: h => h(AppWrapper)

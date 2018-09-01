@@ -5,12 +5,13 @@ import EventEmitter from 'EventEmitter'
 export default class AuthService {
 
   auth0 = new auth0.WebAuth({
-    domain: 'https://graphql-node.auth0.com',
+    domain: 'graphql-node.auth0.com',
     clientID: 'IGBTybQy7ZvycFBG0wgPy57XfstmDSoM',
     redirectUri: 'http://localhost:8080/callback',
+    //redirectUri: 'https://handsup-vue.now.sh/#/callback',
     audience: 'https://graphql-node.auth0.com/userinfo',
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid',
   })
   authenticated = this.isAuthenticated()
   authNotifier = new EventEmitter()
@@ -23,7 +24,8 @@ export default class AuthService {
   }
 
   login () {
-    this.auth0.authorize()
+    //this.auth0.popup.authorize()
+    this.auth0.authorize();
   }
 
   handleAuthentication () {

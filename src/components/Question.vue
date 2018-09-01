@@ -8,11 +8,11 @@
         <Votes :votes="question.votes.length" />
         <div class='profile-container'>
           <div class='profile-small'>
-            <img :src="question.pictureUrl? question.pictureUrl :'http://i1.kym-cdn.com/photos/images/original/000/869/487/ccf.png'"/>
+            <img :src="question.pictureUrl? question.pictureUrl :'https://i.imgur.com/o31QkBR.png'"/>
           </div>
           <div class='profile-small-text'>
             by 
-            {{question.user? question.user.username : '@happylama'}}
+            {{question.user? question.user.username : '@vuejssummit'}}
             <span class='hidden-xs'>, 
               <timeago :datetime="question.createdAt" :auto-update="60"></timeago>
             </span>

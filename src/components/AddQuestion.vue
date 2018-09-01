@@ -1,5 +1,5 @@
 <template>
-  <div class='bottom_wrapper clearfix'>
+  <div v-if="authenticated" class='bottom_wrapper clearfix'>
     <div class='message_input_wrapper'>
       <form v-on:submit.prevent="submit">
       <input
@@ -29,6 +29,7 @@ export default {
     text: "",
     max: MAX_CHAR
   }),
+  props: ['authenticated'],
   methods: {
     keyup(event) {
       this.text = event.target.value;
