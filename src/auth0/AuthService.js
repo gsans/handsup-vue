@@ -8,7 +8,6 @@ export default class AuthService {
     domain: 'graphql-node.auth0.com',
     clientID: 'IGBTybQy7ZvycFBG0wgPy57XfstmDSoM',
     redirectUri: 'http://localhost:8080/callback',
-    //redirectUri: 'https://handsup-vue.now.sh/#/callback',
     audience: 'https://graphql-node.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid',
@@ -16,30 +15,29 @@ export default class AuthService {
   authenticated = this.isAuthenticated()
   authNotifier = new EventEmitter()
 
-  constructor () {
+  constructor() {
     this.login = this.login.bind(this)
     this.setSession = this.setSession.bind(this)
     this.logout = this.logout.bind(this)
     this.isAuthenticated = this.isAuthenticated.bind(this)
   }
 
-  login () {
+  login() {
     this.auth0.authorize();
   }
 
-  handleAuthentication () {
+  handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult)
         router.replace('home')
       } else if (err) {
         router.replace('home')
-        console.log(err)
       }
     })
   }
 
-  setSession (authResult) {
+  setSession(authResult) {
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     )
@@ -49,7 +47,7 @@ export default class AuthService {
     this.authNotifier.emit('authChange', { authenticated: true })
   }
 
-  logout () {
+  logout() {
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
@@ -58,7 +56,7 @@ export default class AuthService {
     router.replace('home')
   }
 
-  isAuthenticated () {
+  isAuthenticated() {
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'))
     return new Date().getTime() < expiresAt
   }

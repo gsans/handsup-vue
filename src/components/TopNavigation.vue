@@ -11,11 +11,13 @@
         </div>
       </div>
       <div class='col-md-4 col-xs-3'>
-        <div v-if="authenticated" class='pull-right button-top' @click="logout()">
-          <button  class='btn btn-primary pull-right'>Logout</button>
-        </div>
-        <div v-if="!authenticated" class='pull-right button-top' @click="login()">
-          <button class='btn btn-primary pull-right'>Login</button>
+        <div v-if="true">
+          <div v-if="authenticated" class='pull-right button-top' @click="logout()">
+            <button  class='btn btn-primary pull-right'>Logout</button>
+          </div>
+          <div v-if="!authenticated" class='pull-right button-top' @click="login()">
+            <button class='btn btn-primary pull-right'>Login</button>
+          </div>
         </div>
       </div>
     </div>
