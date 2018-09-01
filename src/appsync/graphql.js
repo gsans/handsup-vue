@@ -1,13 +1,5 @@
 import gql from 'graphql-tag'
 
-// how to use fragments?
-
-/*
-      user {
-        id username pictureUrl flagged 
-      }
-      */
-
 export const ListQuestions = gql`
 query listQuestions {
   questions: listQuestions {

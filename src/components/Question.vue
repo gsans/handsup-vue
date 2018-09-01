@@ -34,38 +34,39 @@
 
 <script>
 import $ from "jquery";
-import Votes from './Votes.vue'
-import TweetParser from './TweetParser.vue'
+import Votes from "./Votes.vue";
+import TweetParser from "./TweetParser.vue";
 
 export default {
   name: "question",
   components: {
-    Votes, TweetParser
+    Votes,
+    TweetParser
   },
-  props: ['question'],
-  data: () => ({
-    
-  }),
+  props: ["question"],
+  data: () => ({}),
   methods: {
     onSubmit() {
-      this.flyingHearts('.flying-hearts');
+      this.flyingHearts(".flying-hearts");
       this.$emit("vote", { question: this.question.id });
     },
     flyingHearts(selector) {
-      let rnd = (min, max) => Math.floor(Math.random()*(max - min + 1) + min);
+      let rnd = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
       let id = `heart-${rnd(0, 100)}`;
-      let waves = ['flying1', 'flying2', 'flying3'];
-      let colors = ['#e91e63', '#642889', '#00cafe', '#144bcb', '#8bc34a'];
+      let waves = ["flying1", "flying2", "flying3"];
+      let colors = ["#e91e63", "#642889", "#00cafe", "#144bcb", "#8bc34a"];
       let duration = rnd(1000, 2000);
       let color = colors[rnd(1, 100) % colors.length];
       let size = rnd(20, 50);
       let wave = waves[rnd(1, 100) % waves.length];
 
-      $(`<div class="heart ${id}" style="font-size:${size}px; color:${color};"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></div>`)
+      $(
+        `<div class="heart ${id}" style="font-size:${size}px; color:${color};"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></div>`
+      )
         .appendTo(`${selector}`)
-        .css({ animation: `${wave} ${duration}ms ease-in-out` })
-      $(`.${id}`).show()
-      setTimeout(() => $(`.${id}`).remove(), duration)
+        .css({ animation: `${wave} ${duration}ms ease-in-out` });
+      $(`.${id}`).show();
+      setTimeout(() => $(`.${id}`).remove(), duration);
     }
   }
 };

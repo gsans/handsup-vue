@@ -17,79 +17,71 @@
 </template>
 
 <script>
-import { 
-  ListQuestions as QUESTIONS, 
+import {
+  ListQuestions as QUESTIONS,
   AddQuestion as ADD_QUESTION
-} from '../appsync/graphql'
-var VueScrollTo = require('vue-scrollto');
-const MAX_CHAR = 140
+} from "../appsync/graphql";
+var VueScrollTo = require("vue-scrollto");
+const MAX_CHAR = 140;
 
 export default {
   data: () => ({
     text: "",
     max: MAX_CHAR
   }),
-  props: ['authenticated'],
+  props: ["authenticated"],
   methods: {
     keyup(event) {
       this.text = event.target.value;
     },
-    submit(event){
-      event.preventDefault()
+    submit(event) {
+      event.preventDefault();
       if (!this.text || this.text.length === 0) {
         return;
       }
-      //this.$emit("add", { body: this.text });
       const question = { body: this.text };
-      this.$apollo.mutate({
-        mutation: ADD_QUESTION,
-        variables: question,
-        update: (store, { data: { createQuestion } }) => {
-          // called few times without updates
-          if (createQuestion && 'id' in createQuestion) {
-            const data = store.readQuery({ query: QUESTIONS })
-            data.questions.items.push(createQuestion)
-            store.writeQuery({ query: QUESTIONS, data })
+      this.$apollo
+        .mutate({
+          mutation: ADD_QUESTION,
+          variables: question,
+          update: (store, { data: { createQuestion } }) => {
+            if (createQuestion && "id" in createQuestion) {
+              const data = store.readQuery({ query: QUESTIONS });
+              data.questions.items.push(createQuestion);
+              store.writeQuery({ query: QUESTIONS, data });
+            }
           }
-        },
-        /* optimisticResponse: {
-          __typename: 'Mutation',
-          createQuestion: {
-            __typename: 'Question',
-            ...question
-          }
-        }, */
-      })
-      .then(() => {
-        this.$notify({
-          type: 'success',
-          group: 'alerts',
-          title: 'Success',
-          text: 'Question added! ✨🚀',
-        });
+        })
+        .then(() => {
+          this.$notify({
+            type: "success",
+            group: "alerts",
+            title: "Success",
+            text: "Question added! ✨🚀"
+          });
 
-        this.text = ""; 
-        setTimeout(() => {
-          var options = {
-            container: '#app',
-            easing: 'ease-in-out',
-            offset: 0,
-            cancelable: true,
-            x: false,
-            y: true
-          }
-          let elem = document.querySelector('#bottom');
-          VueScrollTo.scrollTo(elem, 500, options);
-        }, 500)
-      })
-      .catch(error => {
-        this.$notify({
-          type: 'error',
-          group: 'alerts',
-          title: 'Error',
-          text: error,
+          this.text = "";
+          setTimeout(() => {
+            var options = {
+              container: "#app",
+              easing: "ease-in-out",
+              offset: 0,
+              cancelable: true,
+              x: false,
+              y: true
+            };
+            let elem = document.querySelector("#bottom");
+            VueScrollTo.scrollTo(elem, 500, options);
+          }, 500);
+        })
+        .catch(error => {
+          this.$notify({
+            type: "error",
+            group: "alerts",
+            title: "Error",
+            text: error
+          });
         });
-      })      
     }
   }
 };

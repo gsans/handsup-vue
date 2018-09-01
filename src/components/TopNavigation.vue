@@ -26,18 +26,19 @@
 </template>
 
 <script>
-import Profile from './Profile'
+import Profile from "./Profile";
 
 export default {
   data: () => ({
-    profile: { 
-      picture: 'https://pbs.twimg.com/profile_images/953430046915559424/3qUVl6M-_400x400.jpg' 
+    profile: {
+      picture:
+        "https://pbs.twimg.com/profile_images/953430046915559424/3qUVl6M-_400x400.jpg"
     },
     isLogged: true
   }),
-  props: ['auth', 'authenticated', 'login', 'logout'],
+  props: ["auth", "authenticated", "login", "logout"],
   components: {
     Profile
-  },
-}
+  }
+};
 </script>

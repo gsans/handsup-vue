@@ -8,7 +8,7 @@
 <script>
 export default {
   name: "votes",
-  props: ['votes'],
+  props: ["votes"],
   computed: {
     blocks() {
       return getBaseLog(this.votes);
@@ -17,6 +17,6 @@ export default {
 };
 
 function getBaseLog(y) {
-  return Math.ceil(Math.log(Math.pow(y+2, 6))/Math.log(5)/5)
+  return Math.ceil(Math.log(Math.pow(y + 2, 6)) / Math.log(5) / 5);
 }
 </script>

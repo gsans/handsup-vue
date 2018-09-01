@@ -14,15 +14,16 @@
 </template>
 
 <script>
-import Question from './Question.vue'
-import Loading from './Loading.vue'
+import Question from "./Question.vue";
+import Loading from "./Loading.vue";
 
 export default {
-  name: 'question-list',
+  name: "question-list",
   components: {
-    Question, Loading
+    Question,
+    Loading
   },
-  props: ['questions'],
+  props: ["questions"],
   methods: {
     vote(question) {
       this.$emit("vote", question);
@@ -34,7 +35,7 @@ export default {
         return this.questions;
       }
       const sorted = this.questions.slice();
-      return sorted.sort((a, b) => a.votes.length < b.votes.length)
+      return sorted.sort((a, b) => a.votes.length < b.votes.length);
     }
   }
 };

@@ -3,15 +3,15 @@
 </template>
 
 <script>
-var twitter = require('twitter-text')
+var twitter = require("twitter-text");
 
 export default {
-  props: ['message'],
+  props: ["message"],
   data: () => ({
-    linkified: ''
+    linkified: ""
   }),
   mounted() {
     this.linkified = twitter.autoLink(twitter.htmlEscape(this.message));
-  } 
-}
+  }
+};
 </script>

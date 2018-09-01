@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'profile',
-  props: ['profile', 'isLogged']
-}
+  name: "profile",
+  props: ["profile", "isLogged"]
+};
 </script>

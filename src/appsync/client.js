@@ -19,13 +19,13 @@ const client = new AWSAppSyncClient({
       return token;
     }
   }
-},{
-  defaultOptions: {
-    watchQuery: {
-      fetchPolicy: 'network-only',
+}, {
+    defaultOptions: {
+      watchQuery: {
+        fetchPolicy: 'network-only',
+      }
     }
-  }
-})
+  })
 
 //client.initQueryManager();
 //client.resetStore();
