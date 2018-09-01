@@ -24,7 +24,6 @@ export default class AuthService {
   }
 
   login () {
-    //this.auth0.popup.authorize()
     this.auth0.authorize();
   }
 
